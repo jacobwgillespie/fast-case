@@ -3,16 +3,16 @@ sudo: false
 os:
   - linux
 
-addons:
+  addons:
   apt:
     sources:
-      - ubuntu-toolchain-r-test
+    - ubuntu-toolchain-r-test
     packages:
-      - g++-4.8
+    - g++-4.8
 
 language: node_js
 node_js:
-  - "8"
+  - '8'
 
 before_install:
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then export CXX=g++-4.8; fi
@@ -26,3 +26,12 @@ script:
   - yarn build
   - yarn test
   - yarn prebuild-ci
+
+deploy:
+  provider: npm
+  email: jacobwgillespie@gmail.com
+  api_key:
+    secure: S97OvuhmeP1WdapVFJO77SjmL6K+tUG30HTbWZ6oufSbMUzZlW4ceedIe580Ra1GE+gkGWVMY46eS6pa5fjyj57V/7bLqA9rHaIWfxygMBOKdM/1fUVmY45mn0CbnJ6X1gBY/8vrXtGBQpwWei6hQME8yx8bLWQv3U6Tg1bsmgpEEIQKCCa9/OdGj6csukivdxLq1Kqsg2Afe8K6TY2zN9tHRo6A1EDmUN6zN/co56i0yX0+mWMNPnbfuXZg8Su3YfLHL6zdbkRCeTTQpPItSkX5XJ47x4sTLIgDOG7gtE+0Cnzs01Umla99zDLFltDWypFwjRMIbBNVq0uiKIyQs2dM6KgZt3+Q2A4ArTMD2A7gT5JEawpXX3cwUg5l448SGjPiCEDqJR8B+1HBXxIEWf1o3uTWWWBO17HFjSODMybQQpYGFei27+uuzsR4JvHXEAut5PW97yqoJ1xFY1ClMzJKvCAUhaEYGVWFi70rZ4ahGgpSZq4lfZSAJLSpBGK/BOpKwjKKJHgCltoRn2h0F436xVsf0e077NP58xGKi+rqBXfPGbMyvB314zLC6yC5Gv4B0u/z2DEQZ4oWXf08wSuUf9VwwGA0RCyVzllc4fpoCsqRjGcZ1GDiTuu0QVGilyVDaGwqBNJg88zpd1ufq7IhlgS/zfnlq74jpY684Dc=
+  on:
+    tags: true
+    repo: jacobwgillespie/fast-case
