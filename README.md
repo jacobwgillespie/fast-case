@@ -1,8 +1,12 @@
 # ⚡ fast-case
 
+[![Build Status](https://travis-ci.org/jacobwgillespie/fast-case.svg?branch=master)](https://travis-ci.org/jacobwgillespie/fast-case)
+[![npm](https://img.shields.io/npm/dm/fast-case.svg)](https://www.npmjs.com/package/fast-case)
+[![npm](https://img.shields.io/npm/v/fast-case.svg)](https://www.npmjs.com/package/fast-case)
+
 `fast-case` is a C++ NodeJS library for camelcase and pascalcase. It is designed to be similar to [humps][0] and [xcase][1], however the string manipulation is performed in native C++ for extra speed.
 
-The module is based on an older version of `xcase`, and all credit for the C++ implementation is due there.
+The module was originally based on an older version of `xcase`, and all credit for the C++ implementation is due there.
 
 ---
 
