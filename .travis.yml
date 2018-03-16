@@ -36,3 +36,4 @@ deploy:
   on:
     tags: true
     repo: jacobwgillespie/fast-case
+  skip_cleanup: true
