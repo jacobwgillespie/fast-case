@@ -19,7 +19,7 @@
     "install": "prebuild-install || node-gyp rebuild",
     "rebuild": "prebuild --compile",
     "prebuild": "prebuild --all --strip --verbose",
-    "format": "clang-format -i src/fast-case.cc src/algorithms.hpp",
+    "format": "prettier --write './src/**/*.{js,mjs}' && clang-format -i src/fast-case.cc src/algorithms.hpp",
     "benchmark": "node support/benchmark.js",
     "build": "microbundle",
     "clean": "rm -rf dist",
