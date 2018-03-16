@@ -13,7 +13,8 @@
     "dist",
     "binding.gyp",
     "package.json",
-    "LICENSE"
+    "LICENSE",
+    "README.md"
   ],
   "scripts": {
     "install": "prebuild-install || node-gyp rebuild",
