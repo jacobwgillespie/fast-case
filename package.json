@@ -25,7 +25,7 @@
     "install": "prebuild-install || node-gyp rebuild",
     "prebuild:build": "prebuild --all --strip --verbose",
     "prebuild:rebuild": "prebuild --compile",
-    "prepublishOnly": "npm run clean && npm run build",
+    "prepare": "npm run clean && npm run build",
     "test": "ava"
   },
   "prettier": {
