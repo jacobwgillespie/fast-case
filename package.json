@@ -24,7 +24,8 @@
     "build": "microbundle",
     "clean": "rm -rf dist",
     "dev": "microbundle watch",
-    "prepublish": "npm run clean && npm run build"
+    "prepublish": "npm run clean && npm run build",
+    "test": "ava"
   },
   "prettier": {
     "semi": false,
@@ -38,6 +39,7 @@
     "prebuild-install": "^2.5.1"
   },
   "devDependencies": {
+    "ava": "^0.25.0",
     "benchmark": "^2.1.4",
     "clang-format": "^1.2.2",
     "humps": "^2.0.1",
