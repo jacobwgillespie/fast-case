@@ -1,5 +1,9 @@
 # Changelog
 
+### v1.0.2
+
+* Fix issue with Travis CI builds
+
 ### v1.0.1
 
 * Publish more prebuilt binaries from CI
