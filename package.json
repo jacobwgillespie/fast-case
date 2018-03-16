@@ -3,6 +3,8 @@
   "version": "1.0.0",
   "description": "A fast C++ library for camelcase and pascalcase",
   "author": "Jacob Gillespie <jacobwgillespie@gmail.com>",
+  "homepage": "https://github.com/jacobwgillespie/fast-case",
+  "repository": "git://github.com/jacobwgillespie/fast-case.git",
   "license": "MIT",
   "main": "dist/fastCase.js",
   "module": "dist/fastCase.mjs",
