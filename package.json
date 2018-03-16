@@ -1,6 +1,6 @@
 {
   "name": "fast-case",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A fast C++ library for camelcase and pascalcase",
   "author": "Jacob Gillespie <jacobwgillespie@gmail.com>",
   "homepage": "https://github.com/jacobwgillespie/fast-case",
