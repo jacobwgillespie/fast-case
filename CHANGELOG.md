@@ -1,5 +1,9 @@
 # Changelog
 
+### v1.1.0
+
+* Add TypeScript typings
+
 ### v1.0.3
 
 * Fix issue with Travis CI builds
