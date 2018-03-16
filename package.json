@@ -9,10 +9,12 @@
   "main": "dist/fastCase.js",
   "module": "dist/fastCase.mjs",
   "source": "src/index.mjs",
+  "typings": "./fast-case.d.ts",
   "files": [
     "dist",
     "binding.gyp",
     "package.json",
+    "fast-case.d.ts",
     "LICENSE",
     "README.md"
   ],
