@@ -1,0 +1,37 @@
+{
+  "name": "fast-case",
+  "version": "1.0.0",
+  "description": "A fast C++ library for camelcase and pascalcase",
+  "author": "Jacob Gillespie <jacobwgillespie@gmail.com>",
+  "license": "MIT",
+  "main": "dist/fastCase.js",
+  "module": "dist/fastCase.mjs",
+  "source": "src/index.mjs",
+  "files": [
+    "dist",
+    "binding.gyp",
+    "package.json",
+    "LICENSE"
+  ],
+  "scripts": {
+    "benchmark": "node support/benchmark.js",
+    "build": "microbundle",
+    "dev": "microbundle watch"
+  },
+  "prettier": {
+    "semi": false,
+    "singleQuote": true,
+    "trailingComma": "all",
+    "bracketSpacing": false
+  },
+  "dependencies": {
+    "nan": "^2.9.2"
+  },
+  "devDependencies": {
+    "benchmark": "^2.1.4",
+    "humps": "^2.0.1",
+    "microbundle": "^0.4.4",
+    "prettier": "^1.11.1",
+    "xcase": "^2.0.1"
+  }
+}
