@@ -6,9 +6,9 @@
 
 `fast-case` is a C++ NodeJS library for camelcase and pascalcase. It is designed to be similar to [humps][0] and [xcase][1], however the string manipulation is performed in native C++ for extra speed.
 
-The module was originally based on an older version of `xcase`, and all credit for the C++ implementation is due there.
-
 ---
+
+The module was originally based on an older version of `xcase`, and all credit for the C++ implementation is due there.
 
 ## Installation
 
