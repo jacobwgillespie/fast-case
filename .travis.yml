@@ -25,7 +25,6 @@ before_install:
 
 script:
   - yarn build
-  - yarn rebuild
   - yarn test
   - yarn prebuild-ci
 

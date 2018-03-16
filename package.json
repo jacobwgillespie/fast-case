@@ -17,14 +17,14 @@
     "README.md"
   ],
   "scripts": {
-    "install": "prebuild-install || node-gyp rebuild",
-    "rebuild": "prebuild --compile",
-    "prebuild": "prebuild --all --strip --verbose",
-    "format": "prettier --write './src/**/*.{js,mjs}' && clang-format -i src/fast-case.cc src/algorithms.hpp",
     "benchmark": "node support/benchmark.js",
     "build": "microbundle",
     "clean": "rm -rf dist",
     "dev": "microbundle watch",
+    "format": "prettier --write './src/**/*.{js,mjs}' && clang-format -i src/fast-case.cc src/algorithms.hpp",
+    "install": "prebuild-install || node-gyp rebuild",
+    "prebuild:build": "prebuild --all --strip --verbose",
+    "prebuild:rebuild": "prebuild --compile",
     "prepublish": "npm run clean && npm run build",
     "test": "ava"
   },
