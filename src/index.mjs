@@ -1,4 +1,4 @@
-let algorithms = require('../build/Release/fast-case')
+let algorithms = require('bindings')('fast-case')
 
 function shouldProcessValue(value) {
   return (
