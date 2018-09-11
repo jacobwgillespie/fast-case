@@ -1,5 +1,9 @@
 # Changelog
 
+### v1.2.0
+
+* Build with Node 10 on Travis CI
+
 ### v1.1.0
 
 * Add TypeScript typings
