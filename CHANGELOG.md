@@ -2,6 +2,10 @@
 
 ### Unreleased
 
+### v1.2.2
+
+- Include src directory in npm bundle
+
 ### v1.2.1
 
 - Update dependencies

@@ -12,6 +12,7 @@
   "typings": "./fast-case.d.ts",
   "files": [
     "dist",
+    "src",
     "binding.gyp",
     "package.json",
     "fast-case.d.ts",
