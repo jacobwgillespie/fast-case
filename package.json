@@ -1,34 +1,22 @@
 {
   "name": "fast-case",
   "version": "1.2.2",
-  "description": "A fast C++ library for camelcase and pascalcase",
+  "description": "A fast JS library for camelCase and PascalCase",
   "author": "Jacob Gillespie <jacobwgillespie@gmail.com>",
   "homepage": "https://github.com/jacobwgillespie/fast-case",
   "repository": "git://github.com/jacobwgillespie/fast-case.git",
   "license": "MIT",
-  "main": "dist/fastCase.js",
-  "module": "dist/fastCase.mjs",
-  "source": "src/index.mjs",
+  "main": "dist/fast-case.js",
+  "module": "dist/fast-case.mjs",
+  "source": "fast-case.js",
   "typings": "./fast-case.d.ts",
   "files": [
     "dist",
-    "src",
-    "binding.gyp",
-    "package.json",
-    "fast-case.d.ts",
-    "LICENSE",
-    "README.md"
+    "fast-case.d.ts"
   ],
   "scripts": {
-    "benchmark": "node support/benchmark.js",
-    "build": "microbundle",
-    "clean": "rm -rf dist",
-    "dev": "microbundle watch",
-    "format": "prettier --write './src/**/*.{js,mjs}' && clang-format -i src/fast-case.cc src/algorithms.hpp",
-    "install": "prebuild-install || node-gyp rebuild",
-    "prebuild:build": "prebuild --all --strip --verbose",
-    "prebuild:rebuild": "prebuild --compile",
-    "prepare": "npm run clean && npm run build",
+    "benchmark": "node benchmark.js",
+    "build": "microbundle -f es,cjs --no-compress --no-sourcemap",
     "test": "ava"
   },
   "prettier": {
@@ -37,20 +25,13 @@
     "trailingComma": "all",
     "bracketSpacing": false
   },
-  "dependencies": {
-    "bindings": "^1.3.0",
-    "nan": "^2.11.1",
-    "prebuild-install": "^5.2.0"
-  },
+  "dependencies": {},
   "devDependencies": {
-    "ava": "^0.25.0",
+    "ava": "^1.0.1",
     "benchmark": "^2.1.4",
-    "clang-format": "^1.2.4",
     "humps": "^2.0.1",
-    "microbundle": "^0.6.0",
-    "prebuild": "^8.1.0",
-    "prebuild-ci": "^2.2.3",
-    "prettier": "^1.14.3",
+    "microbundle": "^0.9.0",
+    "prettier": "^1.15.3",
     "xcase": "^2.0.1"
   }
 }

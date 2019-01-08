@@ -2,7 +2,7 @@ const Benchmark = require('benchmark')
 
 const humps = require('humps')
 const xcase = require('xcase')
-const fastCase = require('..')
+const fastCase = require('.')
 
 const objectBare = {
   payments: [
@@ -770,15 +770,23 @@ function onCycle(event) {
 }
 
 function onComplete() {
-  console.log('Fastest is ' + this.filter('fastest').map('name'))
+  console.log('Fastest is ' + this.filter('fastest').map('name') + '\n')
+}
+
+function getStringForCamelize() {
+  return 'foo_bar_foo'
 }
 
 function getStringForDecamelize() {
   return 'fooBarFooBar'
 }
 
-function getStringForCamelize() {
+function getStringForPascalize() {
   return 'foo_bar_foo'
+}
+
+function getStringForDepascalize() {
+  return 'FooBarFooBar'
 }
 
 new Benchmark.Suite()
@@ -804,6 +812,34 @@ new Benchmark.Suite()
   })
   .add('humps#decamelize', function() {
     humps.decamelize(getStringForDecamelize())
+  })
+  .on('cycle', onCycle)
+  .on('complete', onComplete)
+  .run()
+
+new Benchmark.Suite()
+  .add('xcase#pascalize', function() {
+    xcase.pascalize(getStringForPascalize())
+  })
+  .add('fastCase#pascalize', function() {
+    fastCase.pascalize(getStringForPascalize())
+  })
+  .add('humps#pascalize', function() {
+    humps.pascalize(getStringForPascalize())
+  })
+  .on('cycle', onCycle)
+  .on('complete', onComplete)
+  .run()
+
+new Benchmark.Suite()
+  .add('xcase#depascalize', function() {
+    xcase.depascalize(getStringForDepascalize())
+  })
+  .add('fastCase#depascalize', function() {
+    fastCase.depascalize(getStringForDepascalize())
+  })
+  .add('humps#depascalize', function() {
+    humps.depascalize(getStringForDepascalize())
   })
   .on('cycle', onCycle)
   .on('complete', onComplete)

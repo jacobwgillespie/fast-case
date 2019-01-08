@@ -1,6 +1,8 @@
 # Changelog
 
-### Unreleased
+### v1.3.0
+
+- Rewrite module in JavaScript for faster performance
 
 ### v1.2.2
 

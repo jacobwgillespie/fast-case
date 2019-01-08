@@ -1,5 +1,0 @@
-build/
-dist/*.umd.*
-node_modules/
-prebuilds/
-*.log
