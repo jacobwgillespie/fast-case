@@ -1,5 +1,9 @@
 # Changelog
 
+### v1.4.0
+
+- Update build, publish additional formats
+
 ### v1.3.0
 
 - Rewrite module in JavaScript for faster performance
