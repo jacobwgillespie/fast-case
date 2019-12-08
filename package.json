@@ -6,17 +6,18 @@
   "homepage": "https://github.com/jacobwgillespie/fast-case",
   "repository": "git://github.com/jacobwgillespie/fast-case.git",
   "license": "MIT",
-  "main": "dist/fast-case.js",
-  "module": "dist/fast-case.mjs",
   "source": "fast-case.js",
-  "typings": "./fast-case.d.ts",
+  "main": "dist/fast-case.js",
+  "module": "dist/fast-case.modern.js",
+  "unpkg": "dist/fast-case.umd.js",
+  "types": "fast-case.d.ts",
   "files": [
     "dist",
     "fast-case.d.ts"
   ],
   "scripts": {
     "benchmark": "node benchmark.js",
-    "build": "microbundle -f es,cjs --no-compress --no-sourcemap",
+    "build": "microbundle",
     "test": "ava"
   },
   "prettier": {
@@ -27,11 +28,11 @@
   },
   "dependencies": {},
   "devDependencies": {
-    "ava": "^1.0.1",
+    "ava": "^2.4.0",
     "benchmark": "^2.1.4",
     "humps": "^2.0.1",
-    "microbundle": "^0.9.0",
-    "prettier": "^1.15.3",
+    "microbundle": "^0.12.0-next.6",
+    "prettier": "^1.19.1",
     "xcase": "^2.0.1"
   }
 }
