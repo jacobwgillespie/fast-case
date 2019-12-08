@@ -1,8 +1,8 @@
 # ⚡ fast-case
 
-[![Build Status](https://travis-ci.org/jacobwgillespie/fast-case.svg?branch=master)](https://travis-ci.org/jacobwgillespie/fast-case)
-[![npm](https://img.shields.io/npm/dm/fast-case.svg)](https://www.npmjs.com/package/fast-case)
-[![npm](https://img.shields.io/npm/v/fast-case.svg)](https://www.npmjs.com/package/fast-case)
+[![Build Status](https://github.com/jacobwgillespie/fast-case/workflows/CI/badge.svg)](https://github.com/jacobwgillespie/fast-case/actions)
+[![npm](https://badgen.net/npm/dm/fast-case)](https://www.npmjs.com/package/fast-case)
+[![npm](https://badgen.net/npm/v/fast-case)](https://www.npmjs.com/package/fast-case)
 
 `fast-case` is a JavaScript library for camelcase and pascalcase. It is designed to be similar to [humps][0] and [xcase][1], with algorithm optimizations for additional speed.
 
