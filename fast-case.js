@@ -161,12 +161,7 @@ export function depascalize(str) {
 }
 
 function isPlainObject(value) {
-  return (
-    value &&
-    typeof value === 'object' &&
-    !(value instanceof Function) &&
-    !(value instanceof Date)
-  )
+  return value && typeof value === 'object' && !(value instanceof Function) && !(value instanceof Date)
 }
 
 function transformKeys(obj, transform, inPlace = false) {

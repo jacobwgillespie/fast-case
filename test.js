@@ -81,10 +81,10 @@ test('.depascalize :: preserves numbers', t => {
 // .camelizeKeys
 
 test('.camelizeKeys :: converts object keys to camelcase', t => {
-  t.deepEqual(
-    fastCase.camelizeKeys({first_attribute: 'foo', second_attribute: 'bar'}),
-    {firstAttribute: 'foo', secondAttribute: 'bar'},
-  )
+  t.deepEqual(fastCase.camelizeKeys({first_attribute: 'foo', second_attribute: 'bar'}), {
+    firstAttribute: 'foo',
+    secondAttribute: 'bar',
+  })
 })
 
 test('.camelizeKeys :: converts complex object keys to camelcase', t => {
@@ -95,9 +95,7 @@ test('.camelizeKeys :: converts complex object keys to camelcase', t => {
       third_attribute: {
         first_nested_attribute: 'baz',
         second_nested_attribute: ['hello', 'world'],
-        third_nested_attribute: [
-          {inner_attr_one: 'hi', inner_attr_two: 'there'},
-        ],
+        third_nested_attribute: [{inner_attr_one: 'hi', inner_attr_two: 'there'}],
       },
     }),
     {
@@ -153,10 +151,10 @@ test('.camelizeKeys :: does not convert functions', t => {
 // .pascalizeKeys
 
 test('.pascalizeKeys :: converts object keys to camelcase', t => {
-  t.deepEqual(
-    fastCase.pascalizeKeys({first_attribute: 'foo', second_attribute: 'bar'}),
-    {FirstAttribute: 'foo', SecondAttribute: 'bar'},
-  )
+  t.deepEqual(fastCase.pascalizeKeys({first_attribute: 'foo', second_attribute: 'bar'}), {
+    FirstAttribute: 'foo',
+    SecondAttribute: 'bar',
+  })
 })
 
 test('.pascalizeKeys :: converts complex object keys to camelcase', t => {
@@ -167,9 +165,7 @@ test('.pascalizeKeys :: converts complex object keys to camelcase', t => {
       third_attribute: {
         first_nested_attribute: 'baz',
         second_nested_attribute: ['hello', 'world'],
-        third_nested_attribute: [
-          {inner_attr_one: 'hi', inner_attr_two: 'there'},
-        ],
+        third_nested_attribute: [{inner_attr_one: 'hi', inner_attr_two: 'there'}],
       },
     }),
     {
