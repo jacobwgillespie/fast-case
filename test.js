@@ -1,93 +1,93 @@
-import test from 'ava'
+const test = require('ava')
 
-import fastCase from '.'
+const fastCase = require('.')
 
 // .camelize
 
-test('.camelize :: converts underscore strings to camelcase', t => {
+test('.camelize :: converts underscore strings to camelcase', (t) => {
   t.is(fastCase.camelize('the_test_string'), 'theTestString')
 })
 
-test('.camelize :: converts hyphenated strings to camelcase', t => {
+test('.camelize :: converts hyphenated strings to camelcase', (t) => {
   t.is(fastCase.camelize('the-test-string'), 'theTestString')
 })
 
-test('.camelize :: converts space-separated strings to camelcase', t => {
+test('.camelize :: converts space-separated strings to camelcase', (t) => {
   t.is(fastCase.camelize('the test string'), 'theTestString')
 })
 
-test('.camelize :: converts pascalcased strings to camelcase', t => {
+test('.camelize :: converts pascalcased strings to camelcase', (t) => {
   t.is(fastCase.camelize('TheTestString'), 'theTestString')
 })
 
-test('.camelize :: preserves numbers', t => {
+test('.camelize :: preserves numbers', (t) => {
   t.is(fastCase.camelize('-123'), '-123')
   t.is(fastCase.camelize('123'), '123')
 })
 
 // .decamelize
 
-test('.decamelize :: converts camelcased strings to underscore', t => {
+test('.decamelize :: converts camelcased strings to underscore', (t) => {
   t.is(fastCase.decamelize('theTestString'), 'the_test_string')
 })
 
-test('.decamelize :: does not separate numbers', t => {
+test('.decamelize :: does not separate numbers', (t) => {
   t.is(fastCase.decamelize('theTestString123'), 'the_test_string123')
 })
 
-test('.decamelize :: preserves numbers', t => {
+test('.decamelize :: preserves numbers', (t) => {
   t.is(fastCase.decamelize('-123'), '-123')
   t.is(fastCase.decamelize('123'), '123')
 })
 
 // .pascalize
 
-test('.pascalize :: converts underscore strings to pascalcase', t => {
+test('.pascalize :: converts underscore strings to pascalcase', (t) => {
   t.is(fastCase.pascalize('the_test_string'), 'TheTestString')
 })
 
-test('.pascalize :: converts hyphenated strings to pascalcase', t => {
+test('.pascalize :: converts hyphenated strings to pascalcase', (t) => {
   t.is(fastCase.pascalize('the-test-string'), 'TheTestString')
 })
 
-test('.pascalize :: converts space-separated strings to pascalcase', t => {
+test('.pascalize :: converts space-separated strings to pascalcase', (t) => {
   t.is(fastCase.pascalize('the test string'), 'TheTestString')
 })
 
-test('.pascalize :: converts camelcased strings to pascalcase', t => {
+test('.pascalize :: converts camelcased strings to pascalcase', (t) => {
   t.is(fastCase.pascalize('theTestString'), 'TheTestString')
 })
 
-test('.pascalize :: preserves numbers', t => {
+test('.pascalize :: preserves numbers', (t) => {
   t.is(fastCase.pascalize('-123'), '-123')
   t.is(fastCase.pascalize('123'), '123')
 })
 
 // .depascalize
 
-test('.depascalize :: converts pascalcase strings to underscore', t => {
+test('.depascalize :: converts pascalcase strings to underscore', (t) => {
   t.is(fastCase.depascalize('TheTestString'), 'the_test_string')
 })
 
-test('.depascalize :: does not separate numbers', t => {
+test('.depascalize :: does not separate numbers', (t) => {
   t.is(fastCase.depascalize('TheTestString123'), 'the_test_string123')
 })
 
-test('.depascalize :: preserves numbers', t => {
+test('.depascalize :: preserves numbers', (t) => {
   t.is(fastCase.depascalize('-123'), '-123')
   t.is(fastCase.depascalize('123'), '123')
 })
 
 // .camelizeKeys
 
-test('.camelizeKeys :: converts object keys to camelcase', t => {
+test('.camelizeKeys :: converts object keys to camelcase', (t) => {
   t.deepEqual(fastCase.camelizeKeys({first_attribute: 'foo', second_attribute: 'bar'}), {
     firstAttribute: 'foo',
     secondAttribute: 'bar',
   })
 })
 
-test('.camelizeKeys :: converts complex object keys to camelcase', t => {
+test('.camelizeKeys :: converts complex object keys to camelcase', (t) => {
   t.deepEqual(
     fastCase.camelizeKeys({
       first_attribute: 'foo',
@@ -110,7 +110,7 @@ test('.camelizeKeys :: converts complex object keys to camelcase', t => {
   )
 })
 
-test('.camelizeKeys :: converts complex object in-place keys to camelcase', t => {
+test('.camelizeKeys :: converts complex object in-place keys to camelcase', (t) => {
   const originalObject = {
     first_attribute: 'foo',
     second_attribute: 'bar',
@@ -138,26 +138,26 @@ test('.camelizeKeys :: converts complex object in-place keys to camelcase', t =>
   t.is(originalObject, mutatedObject)
 })
 
-test('.camelizeKeys :: does not convert date objects', t => {
+test('.camelizeKeys :: does not convert date objects', (t) => {
   const date = new Date()
   t.deepEqual(fastCase.camelizeKeys({date_today: date}), {dateToday: date})
 })
 
-test('.camelizeKeys :: does not convert functions', t => {
-  const func = function() {}
+test('.camelizeKeys :: does not convert functions', (t) => {
+  const func = function () {}
   t.deepEqual(fastCase.camelizeKeys({my_function: func}), {myFunction: func})
 })
 
 // .pascalizeKeys
 
-test('.pascalizeKeys :: converts object keys to camelcase', t => {
+test('.pascalizeKeys :: converts object keys to camelcase', (t) => {
   t.deepEqual(fastCase.pascalizeKeys({first_attribute: 'foo', second_attribute: 'bar'}), {
     FirstAttribute: 'foo',
     SecondAttribute: 'bar',
   })
 })
 
-test('.pascalizeKeys :: converts complex object keys to camelcase', t => {
+test('.pascalizeKeys :: converts complex object keys to camelcase', (t) => {
   t.deepEqual(
     fastCase.pascalizeKeys({
       first_attribute: 'foo',
@@ -180,7 +180,7 @@ test('.pascalizeKeys :: converts complex object keys to camelcase', t => {
   )
 })
 
-test('.pascalizeKeys :: converts complex object in-place keys to camelcase', t => {
+test('.pascalizeKeys :: converts complex object in-place keys to camelcase', (t) => {
   const originalObject = {
     first_attribute: 'foo',
     second_attribute: 'bar',
@@ -208,12 +208,12 @@ test('.pascalizeKeys :: converts complex object in-place keys to camelcase', t =
   t.is(originalObject, mutatedObject)
 })
 
-test('.pascalizeKeys :: does not convert date objects', t => {
+test('.pascalizeKeys :: does not convert date objects', (t) => {
   const date = new Date()
   t.deepEqual(fastCase.pascalizeKeys({date_today: date}), {DateToday: date})
 })
 
-test('.pascalizeKeys :: does not convert functions', t => {
-  const func = function() {}
+test('.pascalizeKeys :: does not convert functions', (t) => {
+  const func = function () {}
   t.deepEqual(fastCase.pascalizeKeys({my_function: func}), {MyFunction: func})
 })
