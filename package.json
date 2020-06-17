@@ -17,7 +17,7 @@
   ],
   "scripts": {
     "benchmark": "node benchmark.js",
-    "build": "microbundle",
+    "build": "microbundle build -f modern,cjs,umd",
     "test": "ava"
   },
   "prettier": {
@@ -29,11 +29,11 @@
   },
   "dependencies": {},
   "devDependencies": {
-    "ava": "^2.4.0",
+    "ava": "^3.9.0",
     "benchmark": "^2.1.4",
     "humps": "^2.0.1",
-    "microbundle": "^0.12.0-next.6",
-    "prettier": "^1.19.1",
+    "microbundle": "^0.12.1",
+    "prettier": "^2.0.5",
     "xcase": "^2.0.1"
   }
 }
