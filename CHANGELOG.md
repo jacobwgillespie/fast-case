@@ -1,5 +1,9 @@
 # Changelog
 
+### v1.5.0
+
+- Slightly faster performance for modifying objects (cloned or in-place)
+
 ### v1.4.0
 
 - Update build, publish additional formats

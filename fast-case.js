@@ -1,3 +1,5 @@
+// @ts-check
+
 const CHAR_UPPER_A = 0x41
 const CHAR_LOWER_A = 0x61
 const CHAR_UPPER_Z = 0x5a
@@ -164,20 +166,41 @@ function isPlainObject(value) {
   return value && typeof value === 'object' && !(value instanceof Function) && !(value instanceof Date)
 }
 
-function transformKeys(obj, transform, inPlace = false) {
+function transformKeysInPlace(obj, transform) {
+  let transformed = obj
+
+  for (const key in obj) {
+    const value = obj[key]
+    let nextKey = key
+
+    if (typeof key === 'string') {
+      nextKey = transform(key)
+    }
+
+    if (nextKey !== key) {
+      delete transformed[key]
+    }
+
+    if (isPlainObject(value)) {
+      transformed[nextKey] = transformKeysInPlace(value, transform)
+    } else {
+      transformed[nextKey] = value
+    }
+  }
+
+  return transformed
+}
+
+function transformKeys(obj, transform) {
   let transformed
 
-  if (inPlace) {
-    transformed = obj
+  if (Array.isArray(obj)) {
+    transformed = []
   } else {
-    if (Array.isArray(obj)) {
-      transformed = []
-    } else {
-      if (typeof obj.prototype !== 'undefined') {
-        return obj
-      }
-      transformed = {}
+    if (typeof obj.prototype !== 'undefined') {
+      return obj
     }
+    transformed = {}
   }
 
   for (const key in obj) {
@@ -188,12 +211,8 @@ function transformKeys(obj, transform, inPlace = false) {
       nextKey = transform(key)
     }
 
-    if (inPlace && nextKey !== key) {
-      delete transformed[key]
-    }
-
     if (isPlainObject(value)) {
-      transformed[nextKey] = transformKeys(value, transform, inPlace)
+      transformed[nextKey] = transformKeys(value, transform)
     } else {
       transformed[nextKey] = value
     }
@@ -239,7 +258,7 @@ export function camelizeKeysInPlace(obj) {
     return obj
   }
 
-  return transformKeys(obj, camelize, true)
+  return transformKeysInPlace(obj, camelize)
 }
 
 export function decamelizeKeysInPlace(obj) {
@@ -247,7 +266,7 @@ export function decamelizeKeysInPlace(obj) {
     return obj
   }
 
-  return transformKeys(obj, decamelize, true)
+  return transformKeysInPlace(obj, decamelize)
 }
 
 export function pascalizeKeysInPlace(obj) {
@@ -255,7 +274,7 @@ export function pascalizeKeysInPlace(obj) {
     return obj
   }
 
-  return transformKeys(obj, pascalize, true)
+  return transformKeysInPlace(obj, pascalize)
 }
 
 export function depascalizeKeysInPlace(obj) {
@@ -263,5 +282,5 @@ export function depascalizeKeysInPlace(obj) {
     return obj
   }
 
-  return transformKeys(obj, depascalize, true)
+  return transformKeysInPlace(obj, depascalize)
 }
