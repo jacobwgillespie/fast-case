@@ -748,18 +748,16 @@ for (let i = 0; i < 10; ++i) {
   object.array[i] = Object.assign({}, objectBare)
 }
 
-const suite = new Benchmark.Suite()
-
 const camelizedObject = fastCase.camelizeKeys(object)
 const objectPool = []
 
 function initPool() {
-  while (objectPool.length < 10000) {
+  while (objectPool.length < 100000) {
     objectPool.push(Object.assign({}, object))
   }
 }
 
-initPool() // pool for testing in place camelizeKeys
+initPool() // pool for testing in place updates
 
 function onCycle(event) {
   if (objectPool.length == 0) {
@@ -789,14 +787,16 @@ function getStringForDepascalize() {
   return 'FooBarFooBar'
 }
 
+Benchmark.options.minSamples = 100
+
 new Benchmark.Suite()
-  .add('xcase#camelize', function() {
+  .add('xcase#camelize', function () {
     xcase.camelize(getStringForCamelize())
   })
-  .add('fastCase#camelize', function() {
+  .add('fastCase#camelize', function () {
     fastCase.camelize(getStringForCamelize())
   })
-  .add('humps#camelize', function() {
+  .add('humps#camelize', function () {
     humps.camelize(getStringForCamelize())
   })
   .on('cycle', onCycle)
@@ -804,13 +804,13 @@ new Benchmark.Suite()
   .run()
 
 new Benchmark.Suite()
-  .add('xcase#decamelize', function() {
+  .add('xcase#decamelize', function () {
     xcase.decamelize(getStringForDecamelize())
   })
-  .add('fastCase#decamelize', function() {
+  .add('fastCase#decamelize', function () {
     fastCase.decamelize(getStringForDecamelize())
   })
-  .add('humps#decamelize', function() {
+  .add('humps#decamelize', function () {
     humps.decamelize(getStringForDecamelize())
   })
   .on('cycle', onCycle)
@@ -818,13 +818,13 @@ new Benchmark.Suite()
   .run()
 
 new Benchmark.Suite()
-  .add('xcase#pascalize', function() {
+  .add('xcase#pascalize', function () {
     xcase.pascalize(getStringForPascalize())
   })
-  .add('fastCase#pascalize', function() {
+  .add('fastCase#pascalize', function () {
     fastCase.pascalize(getStringForPascalize())
   })
-  .add('humps#pascalize', function() {
+  .add('humps#pascalize', function () {
     humps.pascalize(getStringForPascalize())
   })
   .on('cycle', onCycle)
@@ -832,13 +832,13 @@ new Benchmark.Suite()
   .run()
 
 new Benchmark.Suite()
-  .add('xcase#depascalize', function() {
+  .add('xcase#depascalize', function () {
     xcase.depascalize(getStringForDepascalize())
   })
-  .add('fastCase#depascalize', function() {
+  .add('fastCase#depascalize', function () {
     fastCase.depascalize(getStringForDepascalize())
   })
-  .add('humps#depascalize', function() {
+  .add('humps#depascalize', function () {
     humps.depascalize(getStringForDepascalize())
   })
   .on('cycle', onCycle)
@@ -846,19 +846,13 @@ new Benchmark.Suite()
   .run()
 
 new Benchmark.Suite()
-  .add('xcase#camelizeKeys', function() {
+  .add('xcase#camelizeKeys', function () {
     xcase.camelizeKeys(smallObject)
   })
-  .add('xcase#camelizeKeys (in place)', function() {
-    xcase.camelizeKeys(smallObject, {inPlace: true})
-  })
-  .add('fastCase#camelizeKeys', function() {
+  .add('fastCase#camelizeKeys', function () {
     fastCase.camelizeKeys(smallObject)
   })
-  .add('fastCase#camelizeKeysInPlace (in place)', function() {
-    fastCase.camelizeKeysInPlace(smallObject, {inPlace: true})
-  })
-  .add('humps#camelizeKeys', function() {
+  .add('humps#camelizeKeys', function () {
     humps.camelizeKeys(smallObject)
   })
   .on('cycle', onCycle)
@@ -866,13 +860,24 @@ new Benchmark.Suite()
   .run()
 
 new Benchmark.Suite()
-  .add('xcase#decamelizeKeys', function() {
+  .add('xcase#camelizeKeys (in place)', function () {
+    xcase.camelizeKeys(smallObject, {inPlace: true})
+  })
+  .add('fastCase#camelizeKeysInPlace (in place)', function () {
+    fastCase.camelizeKeysInPlace(smallObject, {inPlace: true})
+  })
+  .on('cycle', onCycle)
+  .on('complete', onComplete)
+  .run()
+
+new Benchmark.Suite()
+  .add('xcase#decamelizeKeys', function () {
     xcase.decamelizeKeys(smallObjectCamelized)
   })
-  .add('fastCase#decamelizeKeys', function() {
+  .add('fastCase#decamelizeKeys', function () {
     fastCase.decamelizeKeys(smallObjectCamelized)
   })
-  .add('humps#decamelizeKeys', function() {
+  .add('humps#decamelizeKeys', function () {
     humps.decamelizeKeys(smallObjectCamelized)
   })
   .on('cycle', onCycle)
@@ -880,19 +885,13 @@ new Benchmark.Suite()
   .run()
 
 new Benchmark.Suite()
-  .add('xcase#camelizeKeys (large object)', function() {
+  .add('xcase#camelizeKeys (large object)', function () {
     xcase.camelizeKeys(objectPool.pop())
   })
-  .add('xcase#camelizeKeys (in place) (large object)', function() {
-    xcase.camelizeKeys(objectPool.pop(), {inPlace: true})
-  })
-  .add('fastCase#camelizeKeys (large object)', function() {
+  .add('fastCase#camelizeKeys (large object)', function () {
     fastCase.camelizeKeys(objectPool.pop())
   })
-  .add('fastCase#camelizeKeysInPlace (in place) (large object)', function() {
-    fastCase.camelizeKeysInPlace(objectPool.pop())
-  })
-  .add('humps#camelizeKeys (large object)', function() {
+  .add('humps#camelizeKeys (large object)', function () {
     humps.camelizeKeys(objectPool.pop())
   })
   .on('cycle', onCycle)
@@ -900,20 +899,37 @@ new Benchmark.Suite()
   .run()
 
 new Benchmark.Suite()
-  .add('xcase#pascalizeKeys (large object)', function() {
+
+  .add('xcase#camelizeKeys (in place) (large object)', function () {
+    xcase.camelizeKeys(objectPool.pop(), {inPlace: true})
+  })
+  .add('fastCase#camelizeKeysInPlace (in place) (large object)', function () {
+    fastCase.camelizeKeysInPlace(objectPool.pop())
+  })
+  .on('cycle', onCycle)
+  .on('complete', onComplete)
+  .run()
+
+new Benchmark.Suite()
+  .add('xcase#pascalizeKeys (large object)', function () {
     xcase.pascalizeKeys(camelizedObject)
   })
-  .add('xcase#pascalizeKeys (in place) (large object)', function() {
-    xcase.pascalizeKeys(camelizedObject, {inPlace: true})
-  })
-  .add('fastCase#pascalizeKeys (large object)', function() {
+  .add('fastCase#pascalizeKeys (large object)', function () {
     fastCase.pascalizeKeys(camelizedObject)
   })
-  .add('fastCase#pascalizeKeysInPlace (in place) (large object)', function() {
-    fastCase.pascalizeKeysInPlace(camelizedObject, {inPlace: true})
-  })
-  .add('humps#pascalizeKeys (large object)', function() {
+  .add('humps#pascalizeKeys (large object)', function () {
     humps.pascalizeKeys(camelizedObject)
+  })
+  .on('cycle', onCycle)
+  .on('complete', onComplete)
+  .run()
+
+new Benchmark.Suite()
+  .add('xcase#pascalizeKeys (in place) (large object)', function () {
+    xcase.pascalizeKeys(camelizedObject, {inPlace: true})
+  })
+  .add('fastCase#pascalizeKeysInPlace (in place) (large object)', function () {
+    fastCase.pascalizeKeysInPlace(camelizedObject, {inPlace: true})
   })
   .on('cycle', onCycle)
   .on('complete', onComplete)
