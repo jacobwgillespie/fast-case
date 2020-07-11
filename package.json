@@ -6,14 +6,13 @@
   "homepage": "https://github.com/jacobwgillespie/fast-case",
   "repository": "git://github.com/jacobwgillespie/fast-case.git",
   "license": "MIT",
-  "source": "fast-case.js",
-  "main": "dist/fast-case.js",
-  "module": "dist/fast-case.modern.js",
-  "unpkg": "dist/fast-case.umd.js",
-  "types": "fast-case.d.ts",
+  "source": "src/index.ts",
+  "main": "dist/index.js",
+  "module": "dist/index.modern.js",
+  "unpkg": "dist/index.umd.js",
+  "types": "dist/index.d.ts",
   "files": [
-    "dist",
-    "fast-case.d.ts"
+    "dist"
   ],
   "scripts": {
     "benchmark": "node benchmark.js",
@@ -34,6 +33,7 @@
     "humps": "^2.0.1",
     "microbundle": "^0.12.1",
     "prettier": "^2.0.5",
+    "typescript": "^3.9.6",
     "xcase": "^2.0.1"
   }
 }

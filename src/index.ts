@@ -1,5 +1,3 @@
-// @ts-check
-
 const CHAR_UPPER_A = 0x41
 const CHAR_LOWER_A = 0x61
 const CHAR_UPPER_Z = 0x5a
@@ -10,27 +8,29 @@ const CHAR_MINUS = 0x2d
 const CHAR_SPACE = 0x20
 const CHAR_UNDERSCORE = 0x5f
 
-function isUpper(c) {
+type ObjectOrArray = Record<string, unknown> | Array<unknown>
+
+function isUpper(c: number) {
   return CHAR_UPPER_A <= c && c <= CHAR_UPPER_Z
 }
 
-function isLower(c) {
+function isLower(c: number) {
   return CHAR_LOWER_A <= c && c <= CHAR_LOWER_Z
 }
 
-function isDigit(c) {
+function isDigit(c: number) {
   return CHAR_0 <= c && c <= CHAR_9
 }
 
-function toUpper(c) {
+function toUpper(c: number) {
   return c - 0x20
 }
 
-function toLower(c) {
+function toLower(c: number) {
   return c + 0x20
 }
 
-export function camelize(str) {
+export function camelize(str: string) {
   const firstChar = str.charCodeAt(0)
 
   if (isDigit(firstChar) || firstChar === CHAR_MINUS || isNaN(firstChar)) {
@@ -69,7 +69,7 @@ export function camelize(str) {
   return String.fromCharCode.apply(undefined, transformed)
 }
 
-export function decamelize(str) {
+export function decamelize(str: string) {
   const firstChar = str.charCodeAt(0)
 
   if (!isLower(firstChar) || isNaN(firstChar)) {
@@ -99,7 +99,7 @@ export function decamelize(str) {
   return String.fromCharCode.apply(undefined, transformed)
 }
 
-export function pascalize(str) {
+export function pascalize(str: string) {
   const firstChar = str.charCodeAt(0)
 
   if (isDigit(firstChar) || firstChar === CHAR_MINUS || isNaN(firstChar)) {
@@ -138,7 +138,7 @@ export function pascalize(str) {
   return String.fromCharCode.apply(undefined, transformed)
 }
 
-export function depascalize(str) {
+export function depascalize(str: string) {
   const firstChar = str.charCodeAt(0)
 
   if (!isUpper(firstChar) || isNaN(firstChar)) {
@@ -162,123 +162,123 @@ export function depascalize(str) {
   return String.fromCharCode.apply(undefined, transformed)
 }
 
-function isPlainObject(value) {
+function isObjectOrArray(value: unknown): value is ObjectOrArray {
   return value && typeof value === 'object' && !(value instanceof Function) && !(value instanceof Date)
 }
 
-function transformKeysInPlace(obj, transform) {
-  let transformed = obj
+function transformArray(array: Array<unknown>, transform: (key: string) => string) {
+  const length = array.length
+  const transformed = new Array(length)
+  let idx = 0
+  for (const item of array) {
+    transformed[idx++] = isObjectOrArray(item) ? transformKeys(item, transform) : item
+  }
+  return transformed
+}
+
+function transformKeys(obj: ObjectOrArray | Array<unknown>, transform: (key: string) => string) {
+  if (Array.isArray(obj)) {
+    return transformArray(obj, transform)
+  }
+
+  if (typeof obj.prototype !== 'undefined') {
+    return obj
+  }
+
+  const transformed: Record<string, unknown> = {}
+  for (const key in obj) {
+    const value = obj[key]
+    const nextKey = transform(key)
+    transformed[nextKey] = isObjectOrArray(value) ? transformKeys(value, transform) : value
+  }
+  return transformed
+}
+
+function transformArrayInPlace(array: Array<unknown>, transform: (key: string) => string) {
+  let idx = 0
+  for (const item of array) {
+    array[idx++] = isObjectOrArray(item) ? transformKeysInPlace(item, transform) : item
+  }
+  return array
+}
+
+function transformKeysInPlace(obj: ObjectOrArray, transform: (key: string) => string) {
+  if (Array.isArray(obj)) {
+    return transformArrayInPlace(obj, transform)
+  }
 
   for (const key in obj) {
     const value = obj[key]
-    let nextKey = key
-
-    if (typeof key === 'string') {
-      nextKey = transform(key)
-    }
+    const nextKey = transform(key)
 
     if (nextKey !== key) {
-      delete transformed[key]
+      delete obj[key]
     }
 
-    if (isPlainObject(value)) {
-      transformed[nextKey] = transformKeysInPlace(value, transform)
-    } else {
-      transformed[nextKey] = value
-    }
+    obj[nextKey] = isObjectOrArray(value) ? transformKeysInPlace(value, transform) : value
   }
 
-  return transformed
+  return obj
 }
 
-function transformKeys(obj, transform) {
-  let transformed
-
-  if (Array.isArray(obj)) {
-    transformed = []
-  } else {
-    if (typeof obj.prototype !== 'undefined') {
-      return obj
-    }
-    transformed = {}
-  }
-
-  for (const key in obj) {
-    const value = obj[key]
-    let nextKey = key
-
-    if (typeof key === 'string') {
-      nextKey = transform(key)
-    }
-
-    if (isPlainObject(value)) {
-      transformed[nextKey] = transformKeys(value, transform)
-    } else {
-      transformed[nextKey] = value
-    }
-  }
-
-  return transformed
-}
-
-export function camelizeKeys(obj) {
-  if (!isPlainObject(obj)) {
+export function camelizeKeys(obj: ObjectOrArray) {
+  if (!isObjectOrArray(obj)) {
     return obj
   }
 
   return transformKeys(obj, camelize)
 }
 
-export function decamelizeKeys(obj) {
-  if (!isPlainObject(obj)) {
+export function decamelizeKeys(obj: ObjectOrArray) {
+  if (!isObjectOrArray(obj)) {
     return obj
   }
 
   return transformKeys(obj, decamelize)
 }
 
-export function pascalizeKeys(obj) {
-  if (!isPlainObject(obj)) {
+export function pascalizeKeys(obj: ObjectOrArray) {
+  if (!isObjectOrArray(obj)) {
     return obj
   }
 
   return transformKeys(obj, pascalize)
 }
 
-export function depascalizeKeys(obj) {
-  if (!isPlainObject(obj)) {
+export function depascalizeKeys(obj: ObjectOrArray) {
+  if (!isObjectOrArray(obj)) {
     return obj
   }
 
   return transformKeys(obj, depascalize)
 }
 
-export function camelizeKeysInPlace(obj) {
-  if (!isPlainObject(obj)) {
+export function camelizeKeysInPlace(obj: ObjectOrArray) {
+  if (!isObjectOrArray(obj)) {
     return obj
   }
 
   return transformKeysInPlace(obj, camelize)
 }
 
-export function decamelizeKeysInPlace(obj) {
-  if (!isPlainObject(obj)) {
+export function decamelizeKeysInPlace(obj: ObjectOrArray) {
+  if (!isObjectOrArray(obj)) {
     return obj
   }
 
   return transformKeysInPlace(obj, decamelize)
 }
 
-export function pascalizeKeysInPlace(obj) {
-  if (!isPlainObject(obj)) {
+export function pascalizeKeysInPlace(obj: ObjectOrArray) {
+  if (!isObjectOrArray(obj)) {
     return obj
   }
 
   return transformKeysInPlace(obj, pascalize)
 }
 
-export function depascalizeKeysInPlace(obj) {
-  if (!isPlainObject(obj)) {
+export function depascalizeKeysInPlace(obj: ObjectOrArray) {
+  if (!isObjectOrArray(obj)) {
     return obj
   }
 
