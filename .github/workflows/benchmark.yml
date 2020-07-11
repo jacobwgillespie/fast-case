@@ -1,9 +1,9 @@
-name: CI
+name: Benchmark
 on: push
 
 jobs:
-  build:
-    name: Build
+  benchmark:
+    name: Benchmark
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -15,4 +15,4 @@ jobs:
             ${{ runner.os }}-yarn-
       - run: yarn install
       - run: yarn build
-      - run: yarn test
+      - run: yarn benchmark
