@@ -68,56 +68,56 @@ depascalizeKeysInPlace(obj)
 Run `yarn benchmark` to benchmark locally. Informal benchmark results are available [via GitHub Actions](https://github.com/jacobwgillespie/fast-case/actions?query=workflow%3ABenchmark).
 
 ```
-xcase#camelize x 5,743,288 ops/sec ±0.84% (179 runs sampled)
-fastCase#camelize x 6,830,633 ops/sec ±0.79% (182 runs sampled)
-humps#camelize x 867,373 ops/sec ±1.01% (180 runs sampled)
+xcase#camelize x 6,600,243 ops/sec ±0.72% (191 runs sampled)
+fastCase#camelize x 7,716,825 ops/sec ±0.78% (190 runs sampled)
+humps#camelize x 1,150,491 ops/sec ±0.54% (191 runs sampled)
 Fastest is fastCase#camelize
 
-xcase#decamelize x 5,223,684 ops/sec ±1.37% (181 runs sampled)
-fastCase#decamelize x 5,329,052 ops/sec ±0.88% (183 runs sampled)
-humps#decamelize x 1,559,349 ops/sec ±0.82% (183 runs sampled)
+xcase#decamelize x 6,095,752 ops/sec ±0.63% (192 runs sampled)
+fastCase#decamelize x 6,251,767 ops/sec ±0.73% (192 runs sampled)
+humps#decamelize x 2,087,936 ops/sec ±0.94% (189 runs sampled)
 Fastest is fastCase#decamelize
 
-xcase#pascalize x 5,528,203 ops/sec ±0.86% (179 runs sampled)
-fastCase#pascalize x 6,206,861 ops/sec ±0.94% (181 runs sampled)
-humps#pascalize x 760,483 ops/sec ±0.78% (181 runs sampled)
+xcase#pascalize x 6,623,570 ops/sec ±0.77% (188 runs sampled)
+fastCase#pascalize x 7,438,234 ops/sec ±0.74% (188 runs sampled)
+humps#pascalize x 1,060,071 ops/sec ±0.66% (192 runs sampled)
 Fastest is fastCase#pascalize
 
-xcase#depascalize x 5,083,156 ops/sec ±0.76% (181 runs sampled)
-fastCase#depascalize x 5,002,102 ops/sec ±0.93% (182 runs sampled)
-humps#depascalize x 1,435,249 ops/sec ±0.71% (184 runs sampled)
+xcase#depascalize x 6,207,477 ops/sec ±0.57% (191 runs sampled)
+fastCase#depascalize x 6,130,597 ops/sec ±0.73% (186 runs sampled)
+humps#depascalize x 1,909,126 ops/sec ±0.93% (190 runs sampled)
 Fastest is xcase#depascalize
 
-xcase#camelizeKeys x 553,915 ops/sec ±0.90% (183 runs sampled)
-fastCase#camelizeKeys x 586,491 ops/sec ±0.81% (182 runs sampled)
-humps#camelizeKeys x 174,884 ops/sec ±0.70% (183 runs sampled)
+xcase#camelizeKeys x 749,311 ops/sec ±0.68% (190 runs sampled)
+fastCase#camelizeKeys x 794,874 ops/sec ±0.72% (191 runs sampled)
+humps#camelizeKeys x 224,859 ops/sec ±0.52% (191 runs sampled)
 Fastest is fastCase#camelizeKeys
 
-xcase#camelizeKeys (in place) x 649,486 ops/sec ±0.80% (172 runs sampled)
-fastCase#camelizeKeysInPlace (in place) x 639,780 ops/sec ±0.87% (182 runs sampled)
-Fastest is xcase#camelizeKeys (in place)
+xcase#camelizeKeys (in place) x 835,931 ops/sec ±0.75% (190 runs sampled)
+fastCase#camelizeKeysInPlace (in place) x 844,663 ops/sec ±0.88% (191 runs sampled)
+Fastest is fastCase#camelizeKeysInPlace (in place)
 
-xcase#decamelizeKeys x 592,740 ops/sec ±0.94% (181 runs sampled)
-fastCase#decamelizeKeys x 594,536 ops/sec ±0.97% (184 runs sampled)
-humps#decamelizeKeys x 283,610 ops/sec ±0.89% (180 runs sampled)
-Fastest is fastCase#decamelizeKeys,xcase#decamelizeKeys
+xcase#decamelizeKeys x 812,360 ops/sec ±0.86% (191 runs sampled)
+fastCase#decamelizeKeys x 786,222 ops/sec ±0.69% (189 runs sampled)
+humps#decamelizeKeys x 378,324 ops/sec ±0.70% (192 runs sampled)
+Fastest is xcase#decamelizeKeys
 
-xcase#camelizeKeys (large object) x 651 ops/sec ±0.92% (178 runs sampled)
-fastCase#camelizeKeys (large object) x 765 ops/sec ±0.99% (175 runs sampled)
-humps#camelizeKeys (large object) x 216 ops/sec ±0.94% (173 runs sampled)
+xcase#camelizeKeys (large object) x 822 ops/sec ±0.77% (187 runs sampled)
+fastCase#camelizeKeys (large object) x 962 ops/sec ±1.16% (185 runs sampled)
+humps#camelizeKeys (large object) x 282 ops/sec ±0.79% (185 runs sampled)
 Fastest is fastCase#camelizeKeys (large object)
 
-xcase#camelizeKeys (in place) (large object) x 549 ops/sec ±1.44% (172 runs sampled)
-fastCase#camelizeKeysInPlace (in place) (large object) x 797 ops/sec ±0.87% (178 runs sampled)
+xcase#camelizeKeys (in place) (large object) x 688 ops/sec ±1.28% (181 runs sampled)
+fastCase#camelizeKeysInPlace (in place) (large object) x 1,011 ops/sec ±0.59% (189 runs sampled)
 Fastest is fastCase#camelizeKeysInPlace (in place) (large object)
 
-xcase#pascalizeKeys (large object) x 440 ops/sec ±0.77% (180 runs sampled)
-fastCase#pascalizeKeys (large object) x 528 ops/sec ±0.78% (179 runs sampled)
-humps#pascalizeKeys (large object) x 254 ops/sec ±0.86% (174 runs sampled)
+xcase#pascalizeKeys (large object) x 589 ops/sec ±0.60% (183 runs sampled)
+fastCase#pascalizeKeys (large object) x 680 ops/sec ±0.97% (186 runs sampled)
+humps#pascalizeKeys (large object) x 338 ops/sec ±0.72% (181 runs sampled)
 Fastest is fastCase#pascalizeKeys (large object)
 
-xcase#pascalizeKeys (in place) (large object) x 836 ops/sec ±0.93% (178 runs sampled)
-fastCase#pascalizeKeysInPlace (in place) (large object) x 1,099 ops/sec ±1.02% (176 runs sampled)
+xcase#pascalizeKeys (in place) (large object) x 1,007 ops/sec ±0.79% (183 runs sampled)
+fastCase#pascalizeKeysInPlace (in place) (large object) x 1,356 ops/sec ±0.75% (188 runs sampled)
 Fastest is fastCase#pascalizeKeysInPlace (in place) (large object)
 ```
 
