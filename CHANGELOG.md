@@ -1,5 +1,9 @@
 # Changelog
 
+### v1.6.0
+
+- Build library with TypeScript for more accurate generated types
+
 ### v1.5.0
 
 - Slightly faster performance for modifying objects (cloned or in-place)
