@@ -163,7 +163,7 @@ export function depascalize(str: string) {
 }
 
 function isObjectOrArray(value: unknown): value is ObjectOrArray {
-  return value && typeof value === 'object' && !(value instanceof Function) && !(value instanceof Date)
+  return Boolean(value) && typeof value === 'object' && !(value instanceof Function) && !(value instanceof Date)
 }
 
 function transformArray(array: Array<unknown>, transform: (key: string) => string) {
