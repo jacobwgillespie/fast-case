@@ -28,7 +28,7 @@
   },
   "dependencies": {},
   "devDependencies": {
-    "ava": "^3.9.0",
+    "ava": "^4.0.0",
     "benchmark": "^2.1.4",
     "humps": "^2.0.1",
     "microbundle": "^0.14.0",
