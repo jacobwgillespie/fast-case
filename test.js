@@ -156,6 +156,37 @@ test('.camelizeKeys :: does not convert functions', (t) => {
   t.deepEqual(fastCase.camelizeKeys({my_function: func}), {myFunction: func})
 })
 
+// .decamelizeKeys
+
+test('.decamelizeKeys :: decamelizes object keys', (t) => {
+  t.deepEqual(
+    fastCase.decamelizeKeys({
+      firstAttribute: 'foo',
+      secondAttribute: 'bar',
+    }),
+    {
+      first_attribute: 'foo',
+      second_attribute: 'bar',
+    },
+  )
+})
+
+test('.decamelizeKeys :: decamelizes object keys with custom separator', (t) => {
+  t.deepEqual(
+    fastCase.decamelizeKeys(
+      {
+        firstAttribute: 'foo',
+        secondAttribute: 'bar',
+      },
+      '-',
+    ),
+    {
+      'first-attribute': 'foo',
+      'second-attribute': 'bar',
+    },
+  )
+})
+
 // .pascalizeKeys
 
 test('.pascalizeKeys :: converts object keys to camelcase', (t) => {
@@ -224,4 +255,35 @@ test('.pascalizeKeys :: does not convert date objects', (t) => {
 test('.pascalizeKeys :: does not convert functions', (t) => {
   const func = function () {}
   t.deepEqual(fastCase.pascalizeKeys({my_function: func}), {MyFunction: func})
+})
+
+// .depascalizeKeys
+
+test('.depascalizeKeys :: decamelizes object keys', (t) => {
+  t.deepEqual(
+    fastCase.depascalizeKeys({
+      FirstAttribute: 'foo',
+      SecondAttribute: 'bar',
+    }),
+    {
+      first_attribute: 'foo',
+      second_attribute: 'bar',
+    },
+  )
+})
+
+test('.depascalizeKeys :: decamelizes object keys with custom separator', (t) => {
+  t.deepEqual(
+    fastCase.depascalizeKeys(
+      {
+        FirstAttribute: 'foo',
+        SecondAttribute: 'bar',
+      },
+      '-',
+    ),
+    {
+      'first-attribute': 'foo',
+      'second-attribute': 'bar',
+    },
+  )
 })

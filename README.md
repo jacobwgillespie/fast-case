@@ -69,6 +69,13 @@ pascalizeKeysInPlace(obj)
 // optionally modify the object in-place.
 depascalizeKeys(obj)
 depascalizeKeysInPlace(obj)
+
+// Optional custom separator for decamelizeKeys,
+// depascalizeKeys, and in-place variants.
+decamelizeKeys(obj, '-')
+decamelizeKeysInPlace(obj, '-')
+depascalizeKeys(obj, '-')
+depascalizeKeysInPlace(obj, '-')
 ```
 
 ## Benchmark
