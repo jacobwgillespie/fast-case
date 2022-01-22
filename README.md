@@ -36,11 +36,19 @@ camelize(string)
 // 'aString' -> 'a_string'
 decamelize(string)
 
+// Optional custom separator
+// 'aString' -> 'a-string'
+decamelize(string, '-')
+
 // 'a_string' -> 'AString'
 pascalize(string)
 
 // 'AString' -> 'a_string'
 depascalize(string)
+
+// Optional custom separator
+// 'AString' -> 'a-string'
+depascalize(string, '-')
 
 // Camelize all object keys (recursive),
 // optionally modify the object in-place.
@@ -61,6 +69,13 @@ pascalizeKeysInPlace(obj)
 // optionally modify the object in-place.
 depascalizeKeys(obj)
 depascalizeKeysInPlace(obj)
+
+// Optional custom separator for decamelizeKeys,
+// depascalizeKeys, and in-place variants.
+decamelizeKeys(obj, '-')
+decamelizeKeysInPlace(obj, '-')
+depascalizeKeys(obj, '-')
+depascalizeKeysInPlace(obj, '-')
 ```
 
 ## Benchmark
