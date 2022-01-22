@@ -31,6 +31,10 @@ test('.decamelize :: converts camelcased strings to underscore', (t) => {
   t.is(fastCase.decamelize('theTestString'), 'the_test_string')
 })
 
+test('.decamelize :: converts camelcased strings to separator', (t) => {
+  t.is(fastCase.decamelize('theTestString', '-'), 'the-test-string')
+})
+
 test('.decamelize :: does not separate numbers', (t) => {
   t.is(fastCase.decamelize('theTestString123'), 'the_test_string123')
 })
@@ -67,6 +71,10 @@ test('.pascalize :: preserves numbers', (t) => {
 
 test('.depascalize :: converts pascalcase strings to underscore', (t) => {
   t.is(fastCase.depascalize('TheTestString'), 'the_test_string')
+})
+
+test('.depascalize :: converts pascalcase strings to separator', (t) => {
+  t.is(fastCase.depascalize('TheTestString', '-'), 'the-test-string')
 })
 
 test('.depascalize :: does not separate numbers', (t) => {

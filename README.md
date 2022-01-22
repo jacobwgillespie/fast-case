@@ -36,11 +36,19 @@ camelize(string)
 // 'aString' -> 'a_string'
 decamelize(string)
 
+// Optional custom separator
+// 'aString' -> 'a-string'
+decamelize(string, '-')
+
 // 'a_string' -> 'AString'
 pascalize(string)
 
 // 'AString' -> 'a_string'
 depascalize(string)
+
+// Optional custom separator
+// 'AString' -> 'a-string'
+depascalize(string, '-')
 
 // Camelize all object keys (recursive),
 // optionally modify the object in-place.

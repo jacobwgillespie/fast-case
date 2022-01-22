@@ -69,7 +69,7 @@ export function camelize(str: string) {
   return String.fromCharCode.apply(undefined, transformed)
 }
 
-export function decamelize(str: string) {
+export function decamelize(str: string, sep?: string) {
   const firstChar = str.charCodeAt(0)
 
   if (!isLower(firstChar) || isNaN(firstChar)) {
@@ -79,13 +79,19 @@ export function decamelize(str: string) {
   let changed = false
   const transformed = [firstChar]
 
+  let separator = CHAR_UNDERSCORE
+
+  if(sep && sep.charCodeAt(0)) {
+    separator = sep.charCodeAt(0)
+  }
+
   const length = str.length
   for (let i = 1; i < length; i++) {
     const c = str.charCodeAt(i)
 
     if (isUpper(c)) {
       changed = true
-      transformed.push(CHAR_UNDERSCORE)
+      transformed.push(separator)
       transformed.push(toLower(c))
     } else {
       transformed.push(c)
@@ -138,7 +144,7 @@ export function pascalize(str: string) {
   return String.fromCharCode.apply(undefined, transformed)
 }
 
-export function depascalize(str: string) {
+export function depascalize(str: string, sep?: string) {
   const firstChar = str.charCodeAt(0)
 
   if (!isUpper(firstChar) || isNaN(firstChar)) {
@@ -147,12 +153,18 @@ export function depascalize(str: string) {
 
   const transformed = [toLower(firstChar)]
 
+  let separator = CHAR_UNDERSCORE
+
+  if(sep && sep.charCodeAt(0)) {
+    separator = sep.charCodeAt(0)
+  }
+
   const length = str.length
   for (let i = 1; i < length; i++) {
     const c = str.charCodeAt(i)
 
     if (isUpper(c)) {
-      transformed.push(CHAR_UNDERSCORE)
+      transformed.push(separator)
       transformed.push(toLower(c))
     } else {
       transformed.push(c)
