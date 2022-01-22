@@ -1,6 +1,6 @@
 {
   "name": "fast-case",
-  "version": "1.6.0",
+  "version": "1.7.0",
   "description": "A fast JS library for camelCase and PascalCase",
   "author": "Jacob Gillespie <jacobwgillespie@gmail.com>",
   "homepage": "https://github.com/jacobwgillespie/fast-case",
