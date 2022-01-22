@@ -1,5 +1,9 @@
 # Changelog
 
+### v1.7.0
+
+- Add the ability to pass a custom separator to `decamelize` and `depascalize` functions (thanks [@openscript](https://github.com/openscript))
+
 ### v1.6.0
 
 - Build library with TypeScript for more accurate generated types
