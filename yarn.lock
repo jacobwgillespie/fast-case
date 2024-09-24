@@ -4225,6 +4225,11 @@ to-regex-range@^5.0.1:
   dependencies:
     is-number "^7.0.0"
 
+ts-case-convert@^2.0.7:
+  version "2.0.7"
+  resolved "https://registry.yarnpkg.com/ts-case-convert/-/ts-case-convert-2.0.7.tgz#a92b9fb17aadde088f34329f6841cf5640c24f23"
+  integrity sha512-Kqj8wrkuduWsKUOUNRczrkdHCDt4ZNNd6HKjVw42EnMIGHQUABS4pqfy0acETVLwUTppc1fzo/yi11+uMTaqzw==
+
 tslib@^2.0.3, tslib@^2.4.0:
   version "2.4.0"
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-2.4.0.tgz#7cecaa7f073ce680a05847aa77be941098f36dc3"

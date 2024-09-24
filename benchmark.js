@@ -2,6 +2,9 @@ const Benchmark = require('benchmark')
 
 const humps = require('humps')
 const xcase = require('xcase')
+const tsCaseConvert = require('ts-case-convert')
+
+
 const fastCase = require('.')
 
 const objectBare = {
@@ -799,6 +802,9 @@ new Benchmark.Suite()
   .add('humps#camelize', function () {
     humps.camelize(getStringForCamelize())
   })
+  .add('ts-case-convert#camelize', function () {
+    tsCaseConvert.toCamel(getStringForCamelize())
+  })
   .on('cycle', onCycle)
   .on('complete', onComplete)
   .run()
@@ -827,6 +833,9 @@ new Benchmark.Suite()
   .add('humps#pascalize', function () {
     humps.pascalize(getStringForPascalize())
   })
+  .add('ts-case-convert#pascalize', function () {
+    tsCaseConvert.toPascal(getStringForPascalize())
+  })
   .on('cycle', onCycle)
   .on('complete', onComplete)
   .run()
@@ -854,6 +863,9 @@ new Benchmark.Suite()
   })
   .add('humps#camelizeKeys', function () {
     humps.camelizeKeys(smallObject)
+  })
+  .add('ts-case-convert#camelizeKeys', function () {
+    tsCaseConvert.objectToCamel(smallObject)
   })
   .on('cycle', onCycle)
   .on('complete', onComplete)
@@ -894,6 +906,9 @@ new Benchmark.Suite()
   .add('humps#camelizeKeys (large object)', function () {
     humps.camelizeKeys(objectPool.pop())
   })
+  .add('ts-case-convert#camelizeKeys (large object)', function () {
+    tsCaseConvert.objectToCamel(objectPool.pop())
+  })
   .on('cycle', onCycle)
   .on('complete', onComplete)
   .run()
@@ -919,6 +934,9 @@ new Benchmark.Suite()
   })
   .add('humps#pascalizeKeys (large object)', function () {
     humps.pascalizeKeys(camelizedObject)
+  })
+  .add('ts-case-convert#pascalizeKeys (large object)', function () {
+    tsCaseConvert.objectToPascal(camelizedObject)
   })
   .on('cycle', onCycle)
   .on('complete', onComplete)
